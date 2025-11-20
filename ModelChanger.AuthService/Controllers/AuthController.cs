@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 using ModelChanger.AuthService.Dtos;
 using ModelChanger.AuthService.Entities;
 using ModelChanger.AuthService.Repositories;
@@ -47,6 +48,7 @@ public class AuthController : ControllerBase
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), // Subject (user's ID)
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.RoleCd.ToString())
             // Add any other claims (like roles) here
         };
 
